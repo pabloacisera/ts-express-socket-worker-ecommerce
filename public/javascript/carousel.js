@@ -183,17 +183,33 @@ if (document.readyState === 'loading') {
 function initCarousels() {
     console.log('Inicializando carruseles...');
 
+    // Carrusel de Ofertas
     const mainCarousel = initProductCarousel('.carousel-ofertas', {
-        itemsToShow: 'auto', // Detecta automáticamente cuántos caben
+        itemsToShow: 'auto',
         scrollAmount: 1,
         animationSpeed: 300,
         gap: 16
     });
 
     if (mainCarousel) {
-        console.log('Carrusel inicializado correctamente');
+        console.log('Carrusel de OFERTAS inicializado correctamente');
         window.mainCarousel = mainCarousel;
     } else {
-        console.error('Error al inicializar el carrusel');
+        console.warn('No se encontró el carrusel de ofertas');
+    }
+
+    // Carrusel de Ranqueados
+    const ratedCarousel = initProductCarousel('.carousel-rated', {
+        itemsToShow: 'auto',
+        scrollAmount: 1,
+        animationSpeed: 300,
+        gap: 16
+    });
+
+    if (ratedCarousel) {
+        console.log('Carrusel de RANQUEADOS inicializado correctamente');
+        window.ratedCarousel = ratedCarousel;
+    } else {
+        console.warn('No se encontró el carrusel de ranqueados');
     }
 }

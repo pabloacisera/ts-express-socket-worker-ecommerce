@@ -152,13 +152,18 @@
     line-height: 1;
 }
 
-.original-price {
+.original-price, .rated {
     font-size: 0.55rem;
     color: rgba(255, 255, 255, 0.9);
     text-decoration: line-through;
     margin-top: 0.2rem;
     text-align: center;
     padding: 0 0.3rem;
+}
+
+.rated{
+    text-decoration: none;
+    font-size: 0.8rem;
 }
 
 /* TÍTULO DEL PRODUCTO */

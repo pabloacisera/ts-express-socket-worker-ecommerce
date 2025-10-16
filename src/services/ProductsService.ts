@@ -21,4 +21,19 @@ export class ProductsService {
 
         }
     }
+
+    static getMoreRated() : Product[]{
+        try {
+            let mostRated = products.filter(p => p.rating > 4.5);
+
+            if(!mostRated) {
+                throw new Error("Error al encontrar los productos mas valorados");
+            }
+
+            return mostRated;
+        } catch (error) {
+            console.error(error);
+            return[];
+        }
+    }
 }

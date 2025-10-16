@@ -2,100 +2,194 @@
 
 <div class="container">
 
-  <div class="presentation">
-    <img src="/images/logo_app.png" alt="imagen-logo de la applicacion">
-    <h4>Free Market</h4>
-  </div>
+    <div class="presentation">
+        <img src="/images/logo_app.png" alt="imagen-logo de la applicacion">
+        <h4>Free Market</h4>
+    </div>
 
-  <div class="section-product">
+    <div class="section-product">
 
-    {{#if hasOffers}}
-    <div class="first-product-section">
-      <h2>Oferta del día</h2>
-      <div class="first-product-data">
+        {{#if hasOffers}}
+        <div class="first-product-section">
+            <h2>Oferta del día</h2>
+            <div class="first-product-data">
 
-        {{#if firstOffer.ofert}}
-        <div class="first-product-logo">
-          <p class="offer-percent">-{{firstOffer.offer_data.percent}}%</p>
-          <span class="original-price">Precio de lista: ${{firstOffer.price}}</span>
+                {{#if firstOffer.ofert}}
+                <div class="first-product-logo">
+                    <p class="offer-percent">-{{firstOffer.offer_data.percent}}%</p>
+                    <span class="original-price">Precio de lista: ${{firstOffer.price}}</span>
+                </div>
+                {{/if}}
+
+                <h4 class="offer-title">{{firstOffer.title}}</h4>
+
+                <div class="first-product-show-data">
+                    {{#if firstOffer.images.thumb}}
+                    <img src="{{firstOffer.images.thumb}}" alt="{{firstOffer.title}}">
+                    {{else}}
+                    <img src="/images/default_image.png" alt="{{firstOffer.title}}">
+                    {{/if}}
+
+                    <p class="offer-today-description">{{firstOffer.description}}</p>
+
+                    {{#if firstOffer.ofert}}
+                    <span class="offer-today-price">$ {{firstOffer.offer_data.new_value}}</span>
+                    {{else}}
+                    <span class="offer-today-price">$ {{firstOffer.price}}</span>
+                    {{/if}}
+
+                    <button type="button">ver oferta</button>
+                </div>
+            </div>
         </div>
+
+        <div class="carrusel-products">
+            <!-- Aquí podrías agregar más productos -->
+
+            {{#if sixOffers}}
+            <div class="carousel carousel-ofertas">
+                <section class="backward">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+                        fill="#B7B7B7">
+                        <path d="M400-80 0-480l400-400 56 57-343 343 343 343-56 57Z" />
+                    </svg>
+                </section>
+
+                <section class="display-content">
+                    {{#each sixOffers}}
+                    <div class="product-item">
+                        <div class="product-image-container">
+                            <img src="{{this.images.thumb}}" alt="{{this.title}}">
+                        </div>
+
+                        <div class="product-info">
+                            <h3 class="product-title">{{this.title}}</h3>
+
+                            <div class="product-price">
+                                <span class="price-label">Precio:</span>
+                                <span class="price-value">${{this.price}}</span>
+                            </div>
+
+                            <div class="product-rating">
+                                <span class="rating-stars">⭐</span>
+                                <span class="rating-value">{{this.rating}}</span>
+                            </div>
+                        </div>
+
+                        <button class="product-btn">Ver Producto</button>
+                    </div>
+                    {{/each}}
+                </section>
+
+                <section class="forward">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+                        fill="#B7B7B7">
+                        <path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z" />
+                    </svg>
+                </section>
+            </div>
+            {{else}}
+            <p>No se han encontrado ofertas.</p>
+            {{/if}}
+        </div>
+
+        {{else}}
+        <p>No hay ofertas disponibles</p>
         {{/if}}
 
-        <h4 class="offer-title">{{firstOffer.title}}</h4>
+    </div>
 
-        <div class="first-product-show-data">
-          {{#if firstOffer.images.thumb}}
-          <img src="{{firstOffer.images.thumb}}" alt="{{firstOffer.title}}">
-          {{else}}
-          <img src="/images/default_image.png" alt="{{firstOffer.title}}">
-          {{/if}}
+    <div class="section-product">
 
-          <p class="offer-today-description">{{firstOffer.description}}</p>
+        {{#if hasRated}}
+        <div class="first-product-section">
+            <h2>Mas valorados</h2>
+            <div class="first-product-data">
 
-          {{#if firstOffer.ofert}}
-          <span class="offer-today-price">$ {{firstOffer.offer_data.new_value}}</span>
-          {{else}}
-          <span class="offer-today-price">$ {{firstOffer.price}}</span>
-          {{/if}}
+                {{#if firstRated.rating}}
+                <div class="first-product-logo">
+                    <!--<p class="offer-percent">-{{firstRated.offer_data.percent}}%</p>-->
+                    <span class="rated">Ranking {{firstRated.rating}}</span>
+                </div>
+                {{/if}}
 
-          <button type="button">ver oferta</button>
+                <h4 class="offer-title">{{firstRated.title}}</h4>
+
+                <div class="first-product-show-data">
+                    {{#if firstRated.images.thumb}}
+                    <img src="{{firstRated.images.thumb}}" alt="{{firstRated.title}}">
+                    {{else}}
+                    <img src="/images/default_image.png" alt="{{firstRated.title}}">
+                    {{/if}}
+
+                    <p class="offer-today-description">{{firstRated.description}}</p>
+
+                    {{#if firstRated.ofert}}
+                    <span class="offer-today-price">$ {{firstRated.offer_data.new_value}}</span>
+                    {{else}}
+                    <span class="offer-today-price">$ {{firstRated.price}}</span>
+                    {{/if}}
+
+                    <button type="button">ver oferta</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="carrusel-products">
-      <!-- Aquí podrías agregar más productos -->
+        <div class="carrusel-products">
+            <!-- Aquí podrías agregar más productos -->
 
-      {{#if sixOffers}}
-      <div class="carousel carousel-ofertas">
-        <section class="backward">
-          <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#B7B7B7">
-            <path d="M400-80 0-480l400-400 56 57-343 343 343 343-56 57Z" />
-          </svg>
-        </section>
+            {{#if sixRated}}
+            <div class="carousel carousel-rated">
+                <section class="backward">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+                        fill="#B7B7B7">
+                        <path d="M400-80 0-480l400-400 56 57-343 343 343 343-56 57Z" />
+                    </svg>
+                </section>
 
-        <section class="display-content">
-          {{#each sixOffers}}
-          <div class="product-item">
-            <div class="product-image-container">
-              <img src="{{this.images.thumb}}" alt="{{this.title}}">
+                <section class="display-content">
+                    {{#each sixRated}}
+                    <div class="product-item">
+                        <div class="product-image-container">
+                            <img src="{{this.images.thumb}}" alt="{{this.title}}">
+                        </div>
+
+                        <div class="product-info">
+                            <h3 class="product-title">{{this.title}}</h3>
+
+                            <div class="product-price">
+                                <span class="price-label">Precio:</span>
+                                <span class="price-value">${{this.price}}</span>
+                            </div>
+
+                            <div class="product-rating">
+                                <span class="rating-stars">⭐</span>
+                                <span class="rating-value">{{this.rating}}</span>
+                            </div>
+                        </div>
+
+                        <button class="product-btn">Ver Producto</button>
+                    </div>
+                    {{/each}}
+                </section>
+
+                <section class="forward">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+                        fill="#B7B7B7">
+                        <path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z" />
+                    </svg>
+                </section>
             </div>
+            {{else}}
+            <p>No se han encontrado ranqueados.</p>
+            {{/if}}
+        </div>
 
-            <div class="product-info">
-              <h3 class="product-title">{{this.title}}</h3>
+        {{else}}
+        <p>No hay ranqueados disponibles</p>
+        {{/if}}
 
-              <div class="product-price">
-                <span class="price-label">Precio:</span>
-                <span class="price-value">${{this.price}}</span>
-              </div>
-
-              <div class="product-rating">
-                <span class="rating-stars">⭐</span>
-                <span class="rating-value">{{this.rating}}</span>
-              </div>
-            </div>
-
-            <button class="product-btn">Ver Producto</button>
-          </div>
-          {{/each}}
-        </section>
-
-        <section class="forward">
-          <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#B7B7B7">
-            <path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z" />
-          </svg>
-        </section>
-      </div>
-      {{else}}
-      <p>No se han encontrado ofertas.</p>
-      {{/if}}
     </div>
-
-    {{else}}
-    <p>No hay ofertas disponibles</p>
-    {{/if}}
-
-  </div>
 
 </div>
 
