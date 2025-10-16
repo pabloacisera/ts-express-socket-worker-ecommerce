@@ -58,8 +58,16 @@
                 <section class="display-content">
                     {{#each sixOffers}}
                     <div class="product-item">
-                        <div class="product-image-container">
+                        <!--<div class="product-image-container">
                             <img src="{{this.images.thumb}}" alt="{{this.title}}">
+                        </div>-->
+
+                        <div class="product-image-container">
+                            {{#if this.images.thumb}}
+                            <img src="{{this.images.thumb}}" alt="{{this.title}}">
+                            {{else}}
+                            <img src="/images/default_image.png" alt="{{this.title}}">
+                            {{/if}}
                         </div>
 
                         <div class="product-info">
@@ -151,7 +159,11 @@
                     {{#each sixRated}}
                     <div class="product-item">
                         <div class="product-image-container">
+                            {{#if this.images.thumb}}
                             <img src="{{this.images.thumb}}" alt="{{this.title}}">
+                            {{else}}
+                            <img src="/images/default_image.png" alt="{{this.title}}">
+                            {{/if}}
                         </div>
 
                         <div class="product-info">

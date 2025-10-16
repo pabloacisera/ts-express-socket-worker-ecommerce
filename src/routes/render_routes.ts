@@ -4,8 +4,8 @@ import { ProductsService } from "../services/ProductsService.js";
 const r: Router = Router();
 
 r.get("/", (req, res) => {
-    const totalOffers = ProductsService.getOffers();
-    const moreRatedProducts = ProductsService.getMoreRated();
+    const totalOffers = ProductsService.getOffers(); // Ya vienen mezcladas
+    const moreRatedProducts = ProductsService.getMoreRated(); // Ya vienen mezcladas
 
     // Si no hay ofertas, renderizamos igual para evitar errores
     const sixOffers = totalOffers.slice(0, 6);
