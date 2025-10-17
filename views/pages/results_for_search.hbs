@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/css/search_result.css">
+
+<div class="search-container">
+    <p class="results-count">Resultados de la búsqueda: {{ numberProducts }}</p>
+    
+    <div class="display-results">
+        <ul class="product-list">
+            {{#each data_products}}
+            <li class="product-item">
+                <div class="product-card">
+                    <div class="image-section">
+                        {{#if images.thumb}}
+                        <img src="{{images.thumb}}" alt="{{title}}">
+                        {{else}}
+                        <img src="/images/default_image.png" alt="{{title}}">
+                        {{/if}}
+                    </div>
+
+                    <div class="info-section">
+                        <h3 class="product-title">{{title}}</h3>
+                        <p class="product-price">${{price}}</p>
+                        <p class="product-description">{{description}}</p>
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    
+    <p class="pages-count">Número de páginas: {{ numberPages }}</p>
+</div>

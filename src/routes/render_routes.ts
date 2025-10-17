@@ -25,4 +25,23 @@ r.get("/", (req, res) => {
     });
 });
 
+r.get("/search_product", (req, res)=> {
+    // "/search_product?term=palabra que se busca"
+    let searchTerm = String(req.query.term);
+
+   if(!searchTerm || searchTerm === "") {
+        return res.status(400).json( { message: "No ha enviado palabra para buscar." });
+   }
+
+   let result = ProductsService.getForTerm(searchTerm);
+
+   console.log("Resultado para enviar: ", result)
+
+   res.render("pages/results_for_search", {
+        numberProducts: result?.totalProducts,
+        numberPages: result?.chunks,
+        data_products: result?.productsDetails
+   } )
+})
+
 export default r;
