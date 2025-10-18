@@ -39,7 +39,12 @@ app.engine(".hbs", engine({
     extname: ".hbs",
     defaultLayout: "main",
     layoutsDir: path.join(__dirname, "../views", "layouts"),
-    partialsDir: path.join(__dirname, "../views", "partials")
+    partialsDir: path.join(__dirname, "../views", "partials"),
+    helpers: {
+        json: function(context: any) {
+            return JSON.stringify(context);
+        }
+    }
 }));
 app.set("view engine", ".hbs");
 

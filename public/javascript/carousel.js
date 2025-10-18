@@ -60,8 +60,6 @@ function initProductCarousel(carouselSelector, options = {}) {
         const visibleItems = getVisibleItems();
         const maxIndex = Math.max(0, totalItems - visibleItems);
 
-        console.log('Visible items:', visibleItems, 'Total:', totalItems, 'MaxIndex:', maxIndex, 'Current:', currentIndex);
-
         // Backward button
         if (currentIndex <= 0) {
             backward.style.opacity = '0.3';
@@ -125,18 +123,16 @@ function initProductCarousel(carouselSelector, options = {}) {
         }
 
         const scrollPosition = currentIndex * itemWidth;
-        console.log('Sliding to index:', currentIndex, 'Scroll position:', scrollPosition);
+
         smoothScroll(displayContent, scrollPosition, settings.animationSpeed);
     }
 
     // Event listeners
     forward.addEventListener('click', () => {
-        console.log('Forward clicked');
         slide('next');
     });
 
     backward.addEventListener('click', () => {
-        console.log('Backward clicked');
         slide('prev');
     });
 
@@ -181,7 +177,6 @@ if (document.readyState === 'loading') {
 }
 
 function initCarousels() {
-    console.log('Inicializando carruseles...');
 
     // Carrusel de Ofertas
     const mainCarousel = initProductCarousel('.carousel-ofertas', {
@@ -192,7 +187,6 @@ function initCarousels() {
     });
 
     if (mainCarousel) {
-        console.log('Carrusel de OFERTAS inicializado correctamente');
         window.mainCarousel = mainCarousel;
     } else {
         console.warn('No se encontró el carrusel de ofertas');
@@ -207,7 +201,6 @@ function initCarousels() {
     });
 
     if (ratedCarousel) {
-        console.log('Carrusel de RANQUEADOS inicializado correctamente');
         window.ratedCarousel = ratedCarousel;
     } else {
         console.warn('No se encontró el carrusel de ranqueados');

@@ -36,7 +36,7 @@ export class ProductsService {
         try {
             const searchTerm = term.toLowerCase().trim();
 
-            const productsFound = products.filter(p => 
+            const productsFound = products.filter(p =>
                 p.title.toLowerCase().includes(searchTerm) ||
                 p.description.toLowerCase().includes(searchTerm) ||
                 p.category.toLowerCase().includes(searchTerm) ||
@@ -64,4 +64,51 @@ export class ProductsService {
             };
         }
     }
+
+    static getByCategory(category: string): SearchResponse | null {
+        try {
+            const searchCategory = category.trim().toLowerCase();
+
+            if (!searchCategory) {
+                return {
+                    totalProducts: 0,
+                    chunks: 0,
+                    productsDetails: []
+                };
+            }
+
+            // Filtrar los productos por categoría (búsqueda más flexible)
+            const productsFound = products.filter(p =>
+                p.category.toLowerCase().includes(searchCategory) ||
+                searchCategory.includes(p.category.toLowerCase())
+            );
+
+            if (!productsFound.length) {
+                console.log(`No products found for category: ${category}`);
+                return {
+                    totalProducts: 0,
+                    chunks: 0,
+                    productsDetails: []
+                };
+            }
+
+            const totalProducts = productsFound.length;
+            const chunks = Math.ceil(totalProducts / 12);
+
+            return {
+                totalProducts,
+                chunks,
+                productsDetails: productsFound
+            };
+
+        } catch (error) {
+            console.error("Error en getByCategory:", error);
+            return {
+                totalProducts: 0,
+                chunks: 0,
+                productsDetails: []
+            };
+        }
+    }
+
 }

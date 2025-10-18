@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="/css/search_result.css">
+
+<!-- Elemento hidden con los datos -->
+<script type="application/json" id="productosOriginales">
+[
+    {{#each data_products}}
+    {
+        "id": "{{id}}",
+        "title": "{{title}}",
+        "price": {{price}},
+        "description": "{{description}}",
+        "images": {"thumb": "{{#if images.thumb}}{{images.thumb}}{{else}}/images/default_image.png{{/if}}"},
+        "rating": {{rating}}
+    }{{#unless @last}},{{/unless}}
+    {{/each}}
+]
+</script>
+
+<p class="results-count">Resultados de la búsqueda: {{ numberProducts }} productos</p>
+
+<div class="search-container">
+    <div class="display-filters" id="filterPanel">
+        <section class="filter-header">
+            <p>FILTROS</p>
+            <svg id="toggleFilterButton" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960"
+                width="40px" fill="#1f1f1f">
+                <path d="M430-294v-372L240-480l190 186Zm103.33 174H600v-720h-66.67v720Z" />
+            </svg>
+        </section>
+        <div class="filter-content">
+            <section class="order-products">
+                <span>Ordenar:</span>
+                <select name="order" id="order">
+                    <option value="">Sin orden</option>
+                    <option value="mayor_precio">Mayor precio</option>
+                    <option value="menor_precio">Menor precio</option>
+                    <option value="a-z">A-Z</option>
+                </select>
+            </section>
+
+            <section class="price-range">
+                <span>Rango de precios</span>
+                <p data-value="from0to99000">Entre $0 - $99.000</p>
+                <p data-value="from100000to299999">Entre $100.000 - $299.999</p>
+                <p data-value="from300000to499999">Entre $300.000 - $499.999</p>
+                <p data-value="from500000to699999">Entre $500.000 - $699.999</p>
+                <p data-value="from700000to899999">Entre $700.000 - $899.999</p>
+                <p data-value="from900000to1099999">Entre $900.000 - $1.099.999</p>
+                <p data-value="more1100000">Mas de $1.100.000</p>
+            </section>
+
+            <section class="rating-filter">
+                <span>Rating mínimo</span>
+                <p data-value="4.5">★★★★☆ 4.5+</p>
+                <p data-value="4.0">★★★★☆ 4.0+</p>
+                <p data-value="3.5">★★★☆☆ 3.5+</p>
+                <p data-value="3.0">★★★☆☆ 3.0+</p>
+                <p data-value="2.5">★★☆☆☆ 2.5+</p>
+                <p data-value="2.0">★★☆☆☆ 2.0+</p>
+                <p data-value="1.0">★☆☆☆☆ 1.0+</p>
+            </section>
+        </div>
+    </div>
+
+    <div class="display-results">
+        <ul class="product-list" id="listaProductos">
+            {{#each data_products}}
+            <li class="product-item" data-id="{{id}}" data-price="{{price}}" data-rating="{{rating}}">
+                <div class="product-card">
+                    <div class="image-section">
+                        {{#if images.thumb}}
+                        <img src="{{images.thumb}}" alt="{{title}}">
+                        {{else}}
+                        <img src="/images/default_image.png" alt="{{title}}">
+                        {{/if}}
+                    </div>
+                    <div class="info-section">
+                        <h3 class="product-title">{{title}}<span> - {{rating}}★</span></h3>
+                        <p class="product-price">${{price}}</p>
+                        <p class="product-description">{{description}}</p>
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+<p class="pages-count">Número de páginas: {{ numberPages }}</p>
+
+<script src="/javascript/filter_products.js"></script>

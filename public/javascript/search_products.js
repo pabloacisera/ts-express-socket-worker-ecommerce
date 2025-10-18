@@ -1,34 +1,23 @@
-import { Requests } from "./requests.js";
+// buscar y enviar productos
+$(function () {
+    let input = $("#searchTerm");
+    let buttonSearch = $(".search-icon");
 
-async function sendTerm(word) {
-    window.location.href = `/search_product?term=${word}`;
-}
-
-$(function() {
-    let searchInput = $("#searchTerm");
-    let searchButton = $(".search-icon");
-
-    searchInput.on("keydown", function(event) {
-        
-        if(event.key === "Enter") {
-            event.preventDefault();
-
-            let term = $(this).val();
-
-            if(!term) {
-                alert("No ha completado el campo de busqueda");
-            }
-
-            sendTerm(term);
+    function searchTerm(term) {
+        if (term.trim() !== '') {
+            window.location.href = `http://localhost:3000/search_product?term=${encodeURIComponent(term)}`;
         }
-    })
+    }
 
-    searchButton.on("click", function() {
-        const term = searchInput.val().trim();
-        if(!term) {
-            alert("No ha completado el campo de busqueda");
+    // Capturar la tecla Enter - CORREGIDO
+    input.on("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault(); // Prevenir comportamiento por defecto
+            searchTerm(input.val());
         }
-        sendTerm(term)
     });
-    
+
+    buttonSearch.on("click", function () {
+        searchTerm(input.val());
+    });
 });

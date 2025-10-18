@@ -25,23 +25,37 @@ r.get("/", (req, res) => {
     });
 });
 
-r.get("/search_product", (req, res)=> {
+r.get("/search_product", (req, res) => {
     // "/search_product?term=palabra que se busca"
     let searchTerm = String(req.query.term);
 
-   if(!searchTerm || searchTerm === "") {
-        return res.status(400).json( { message: "No ha enviado palabra para buscar." });
-   }
+    if (!searchTerm || searchTerm === "") {
+        return res.status(400).json({ message: "No ha enviado palabra para buscar." });
+    }
 
-   let result = ProductsService.getForTerm(searchTerm);
+    let result = ProductsService.getForTerm(searchTerm);
 
-   console.log("Resultado para enviar: ", result)
+    //console.log("Resultado para enviar: ", result)
 
-   res.render("pages/results_for_search", {
+    res.render("pages/results_products", {
         numberProducts: result?.totalProducts,
         numberPages: result?.chunks,
         data_products: result?.productsDetails
-   } )
+    })
+})
+
+r.get("/search/category", (req, res) => {
+    let category = String(req.query.select);
+    console.log("Category requested:", category);
+
+    let result = ProductsService.getByCategory(category);
+    console.log("Products found:", result?.productsDetails.length);
+
+    res.render("pages/results_products", {
+        numberProducts: result?.totalProducts,
+        numberPages: result?.chunks,
+        data_products: result?.productsDetails
+    })
 })
 
 export default r;

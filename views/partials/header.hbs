@@ -3,7 +3,7 @@
     <nav id="navbar">
         <div class="left-section">
             <div class="image">
-                <img src="/images/logo_app.png" alt="logo de la aplicación">
+                <img src="/images/logo_app.png" alt="logo de la aplicación" id="image-link">
                 <p class="zip-code">FreeMarket</p>
             </div>
             <div class="left-subsection">
@@ -12,20 +12,20 @@
                     <button class="search-icon">🔍</button>
                 </div>
                 <div class="links">
-                    <p>categorías</p>
-                    <p>ofertas</p>
-                    <p>cupones</p>
+                    <p id="categories">categorías</p>
+                    <p id="offers">ofertas</p>
+                    <p id="cupons">cupones</p>
                 </div>
             </div>
-
         </div>
         <div class="right-section">
-            <p>crear cuenta</p>
-            <p>ingresar</p>
-            <p>mis compras</p>
+            <p id="register">crear cuenta</p>
+            <p id="login">ingresar</p>
+            <p id="sales">mis compras</p>
         </div>
     </nav>
 </section>
 
+<!-- Quitar type="module" si no necesitas import/export -->
 <script type="module" src="/javascript/header.js"></script>
 <script type="module" src="/javascript/search_products.js"></script>

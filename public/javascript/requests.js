@@ -11,7 +11,6 @@ export class Requests {
             // Manejar errores HTTP (como 400)
             if (!result.ok) {
                 const errorData = await result.json().catch(() => ({}));
-                console.error("Error HTTP:", result.status, errorData.message || result.statusText);
                 return { error: true, status: result.status, message: errorData.message || "Error desconocido" };
             }
 

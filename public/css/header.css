@@ -35,6 +35,10 @@ nav {
     margin-top: 0.5rem;
 }
 
+.image:hover {
+    cursor: pointer;
+}
+
 .image img {
     width: 4rem;
     height: 4rem;
@@ -107,6 +111,28 @@ nav {
     padding: 7px 10px;
     cursor: pointer;
     font-size: 1.2rem;
+}
+
+.list-categories {
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+    background: #fff;
+    color: rgb(99, 99, 99);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    border-radius: 6px;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.list-categories li {
+    padding: 6px 14px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.list-categories li:hover {
+    background-color: #f5f5f5;
+    text-shadow: 0.1px 0.2px 0.5px black;
 }
 
 /* 🔽 MEDIA QUERIES */
